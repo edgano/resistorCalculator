@@ -11,6 +11,7 @@
     <string name="tolerance">Tolerance</string>
     <string name="lblToleance">Resistor Value</string>
     <string name="lblResult">final</string>
+    <string name="lblResultToler">final</string>
 
 
 </resources>

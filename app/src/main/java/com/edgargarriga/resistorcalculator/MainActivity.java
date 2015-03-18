@@ -9,11 +9,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class MainActivity extends ActionBarActivity {
 
     private TextView lblResult;
+    private TextView lblResultToler;
     private Spinner band01;
     private Spinner band02;
     private Spinner multi;
@@ -22,7 +25,7 @@ public class MainActivity extends ActionBarActivity {
     private int value02;
     private int value03;
     private int value04;
-    private String result;
+    //private String result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         lblResult = (TextView)findViewById(R.id.textView6);
+        lblResultToler = (TextView)findViewById(R.id.textView7);
         band01 = (Spinner)findViewById(R.id.spinner1);
         band02 = (Spinner)findViewById(R.id.spinner2);
         multi = (Spinner)findViewById(R.id.spinner3);
@@ -75,8 +79,8 @@ public class MainActivity extends ActionBarActivity {
         ColorSpinnerAdapter colorSpinnerMulti = new ColorSpinnerAdapter(this, android.R.layout.simple_list_item_1, color_multi);
 
         ArrayList<ColorSpinnerAdapterItem> color_tole = new ArrayList<ColorSpinnerAdapterItem>();
-        color_multi.add(new ColorSpinnerAdapterItem(Color.rgb(139,69,19), "")); //brown
-        color_multi.add(new ColorSpinnerAdapterItem(Color.RED, ""));//red
+        color_tole.add(new ColorSpinnerAdapterItem(Color.rgb(139,69,19), "")); //brown
+        color_tole.add(new ColorSpinnerAdapterItem(Color.RED, ""));//red
         color_tole.add(new ColorSpinnerAdapterItem(Color.rgb(218,165,32), "")); //gold
         color_tole.add(new ColorSpinnerAdapterItem(Color.rgb(192,192,192), "")); //silver
         ColorSpinnerAdapter colorSpinnerTole = new ColorSpinnerAdapter(this, android.R.layout.simple_list_item_1, color_tole);
@@ -93,7 +97,9 @@ public class MainActivity extends ActionBarActivity {
                         //position = posicion 0->n-1 en el array
                         value01=  position;
                         double result = (value01*10+value02)*( Math.pow(10,value03));
-                        lblResult.setText(" Value: "+result+" "+value04+"%");
+                        NumberFormat nf = new DecimalFormat("##");
+                        lblResult.setText("Value: "+nf.format(result)+" ohms");
+                        lblResultToler.setText("Tolerance: +/-: "+value04+"%");
                     }
 
                     public void onNothingSelected(AdapterView<?> parent) {
@@ -107,7 +113,9 @@ public class MainActivity extends ActionBarActivity {
                         //position = posicion 0->n-1 en el array
                         value02=  position;
                         double result = (value01*10+value02)*( Math.pow(10,value03));
-                        lblResult.setText(" Value: "+result+" "+value04+"%");
+                        NumberFormat nf = new DecimalFormat("##");
+                        lblResult.setText("Value: "+nf.format(result));
+                        lblResultToler.setText("Tolerance: +/-: "+value04+"%");
                     }
 
                     public void onNothingSelected(AdapterView<?> parent) {
@@ -121,7 +129,9 @@ public class MainActivity extends ActionBarActivity {
                         //position = posicion 0->n-1 en el array
                         value03=  position;
                         double result = (value01*10+value02)*( Math.pow(10,value03));
-                        lblResult.setText(" Value: "+result+" "+value04+"%");
+                        NumberFormat nf = new DecimalFormat("##");
+                        lblResult.setText("Value: "+nf.format(result));
+                        lblResultToler.setText("Tolerance: +/-: "+value04+"%");
                     }
 
                     public void onNothingSelected(AdapterView<?> parent) {
@@ -143,7 +153,9 @@ public class MainActivity extends ActionBarActivity {
                             value04=10;
 
                         double result = (value01*10+value02)*( Math.pow(10,value03));
-                        lblResult.setText(" Value: "+result+" "+value04+"%");
+                        NumberFormat nf = new DecimalFormat("##");
+                        lblResult.setText("Value: "+nf.format(result));
+                        lblResultToler.setText("Tolerance: +/-: "+value04+"%");
                     }
 
                     public void onNothingSelected(AdapterView<?> parent) {
